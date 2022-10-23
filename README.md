@@ -10,7 +10,7 @@
     
 # Frontend setup  
 * Open terminal/cmd inside **angular-frontend** folder and run the command `npm install` .  
-* Run `npm start` and open the url as shown in the terminal window to navigate to the landing page.  
+* Execute `npm start` and open the url as shown in the terminal window to navigate to the landing page.  
 
   
 # Backend setup  
