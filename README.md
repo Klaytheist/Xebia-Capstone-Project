@@ -4,7 +4,8 @@
 * MS SQL Server Management Studio 18.
 
 # Database setup  
-* Copy contents of [MS Server Script](https://github.com/Klaytheist/Xebia-Capstone-Project/blob/master/MS%20Server%20Script.txt) into a new query window of SQL Server and execute it.
+* Copy contents of [MS Server Script](https://github.com/Klaytheist/Xebia-Capstone-Project/blob/master/MS%20Server%20Script.txt) into a new query window of SQL Server and execute it.  
+* Insert an admin account of your choice manually to the users table.
   
     
 # Frontend setup  
