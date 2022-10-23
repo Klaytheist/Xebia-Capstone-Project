@@ -1,3 +1,8 @@
+# Pre-requisites  
+* Angular v14 or above  
+* .NET 6 Core  
+* MS SQL Server Management Studio 18.
+
 # Database setup  
 * Copy contents of [MS Server Script](https://github.com/Klaytheist/Xebia-Capstone-Project/blob/master/MS%20Server%20Script.txt) into a new query window of SQL Server.  
   
