@@ -1,0 +1,229 @@
+USE [master]
+GO
+/****** Object:  Database [Capstone]    Script Date: 23-10-2022 23:41:04 ******/
+CREATE DATABASE [Capstone]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Capstone', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\Capstone.mdf' , SIZE = 73728KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'Capstone_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\Capstone_log.ldf' , SIZE = 73728KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [Capstone] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Capstone].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [Capstone] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [Capstone] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [Capstone] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [Capstone] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [Capstone] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [Capstone] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [Capstone] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [Capstone] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [Capstone] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [Capstone] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [Capstone] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [Capstone] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [Capstone] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [Capstone] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [Capstone] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [Capstone] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [Capstone] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [Capstone] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [Capstone] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [Capstone] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [Capstone] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [Capstone] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [Capstone] SET RECOVERY FULL 
+GO
+ALTER DATABASE [Capstone] SET  MULTI_USER 
+GO
+ALTER DATABASE [Capstone] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [Capstone] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [Capstone] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [Capstone] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [Capstone] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [Capstone] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'Capstone', N'ON'
+GO
+ALTER DATABASE [Capstone] SET QUERY_STORE = OFF
+GO
+USE [Capstone]
+GO
+/****** Object:  Table [dbo].[address]    Script Date: 23-10-2022 23:41:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[address](
+	[fname] [varchar](30) NOT NULL,
+	[lname] [varchar](30) NOT NULL,
+	[shipemail] [varchar](50) NULL,
+	[email] [varchar](50) NOT NULL,
+	[address1] [varchar](50) NOT NULL,
+	[address2] [varchar](50) NULL,
+	[country] [varchar](25) NOT NULL,
+	[state] [varchar](25) NOT NULL,
+	[zip] [varchar](10) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[cart]    Script Date: 23-10-2022 23:41:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[cart](
+	[id] [varchar](50) NOT NULL,
+	[productid] [varchar](50) NOT NULL,
+	[useremail] [varchar](50) NOT NULL,
+	[count] [numeric](3, 0) NOT NULL,
+	[merchantemail] [varchar](50) NOT NULL,
+	[productname] [varchar](50) NOT NULL,
+	[price] [numeric](7, 0) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[merchantrequest]    Script Date: 23-10-2022 23:41:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[merchantrequest](
+	[fname] [varchar](30) NULL,
+	[lname] [varchar](30) NULL,
+	[email] [varchar](50) NOT NULL,
+	[mobile] [numeric](10, 0) NULL,
+	[password] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[orders]    Script Date: 23-10-2022 23:41:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[orders](
+	[id] [varchar](50) NOT NULL,
+	[productname] [varchar](50) NULL,
+	[count] [numeric](3, 0) NULL,
+	[price] [numeric](7, 0) NULL,
+	[useremail] [varchar](50) NULL,
+	[address] [varchar](60) NULL,
+	[zip] [numeric](6, 0) NULL,
+	[merchantemail] [varchar](50) NOT NULL,
+	[orderdate] [date] NOT NULL,
+	[state] [varchar](2) NOT NULL,
+	[status] [varchar](20) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[products]    Script Date: 23-10-2022 23:41:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[products](
+	[id] [varchar](50) NOT NULL,
+	[name] [varchar](50) NOT NULL,
+	[brand] [varchar](50) NOT NULL,
+	[merchantemail] [varchar](50) NOT NULL,
+	[unitsold] [bigint] NULL,
+	[image] [nvarchar](max) NOT NULL,
+	[description] [nvarchar](max) NOT NULL,
+	[category] [varchar](15) NOT NULL,
+	[price] [numeric](7, 0) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[name] ASC,
+	[merchantemail] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[users]    Script Date: 23-10-2022 23:41:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[users](
+	[fname] [varchar](30) NULL,
+	[lname] [varchar](30) NULL,
+	[email] [varchar](50) NOT NULL,
+	[mobile] [numeric](10, 0) NULL,
+	[password] [varchar](50) NULL,
+	[role] [varchar](2) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[address]  WITH CHECK ADD FOREIGN KEY([email])
+REFERENCES [dbo].[users] ([email])
+GO
+ALTER TABLE [dbo].[cart]  WITH CHECK ADD FOREIGN KEY([productname], [merchantemail])
+REFERENCES [dbo].[products] ([name], [merchantemail])
+GO
+ALTER TABLE [dbo].[cart]  WITH CHECK ADD FOREIGN KEY([merchantemail])
+REFERENCES [dbo].[users] ([email])
+GO
+ALTER TABLE [dbo].[cart]  WITH CHECK ADD FOREIGN KEY([useremail])
+REFERENCES [dbo].[users] ([email])
+GO
+ALTER TABLE [dbo].[orders]  WITH CHECK ADD FOREIGN KEY([merchantemail])
+REFERENCES [dbo].[users] ([email])
+GO
+ALTER TABLE [dbo].[orders]  WITH CHECK ADD FOREIGN KEY([useremail])
+REFERENCES [dbo].[users] ([email])
+GO
+ALTER TABLE [dbo].[products]  WITH CHECK ADD FOREIGN KEY([merchantemail])
+REFERENCES [dbo].[users] ([email])
+GO
+USE [master]
+GO
+ALTER DATABASE [Capstone] SET  READ_WRITE 
+GO
