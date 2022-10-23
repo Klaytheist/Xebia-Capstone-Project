@@ -1,0 +1,59 @@
+<div class="container bg-white border border-2 mt-4 py-3">
+  <form #addForm="ngForm" (ngSubmit)="submit(addForm)">
+    <h2 class="text-center">
+      Edit product
+    </h2>
+      <div class="row">
+        <div class="col-lg-4 mt-4">
+          <div class="mb-3">
+              <div>
+                <label for="image">Product Image</label>
+              </div>
+              <img [src]="details.image" alt="" style="max-width:310px" class="mb-3">
+            <input required type="file" accept="image/*" class="form-control"
+            name="image" id="image" placeholder="" aria-describedby="fileHelpId" (change)="onSelectImage($event)">
+          </div>
+        </div>
+        <div class="col-lg-8 mt-3">
+          <div class="mb-3">
+            <label for="name" class="form-label">Product Name</label>
+            <input type="text"
+              class="form-control" required name="name" id="name" aria-describedby="helpId" placeholder="" [(ngModel)]="details.name">
+          </div>
+
+
+          <div class="mb-3">
+            <label for="mob" class="form-label">Price</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text">₹</span>
+              <input type="number" pattern="^(\d|[1-9]\d{1,5})(\.\d{2})?$"
+                class="form-control" name="mob" id="mob" aria-describedby="helpId" placeholder="" [(ngModel)]="details.price" #number="ngModel">
+              </div>
+              <div *ngIf="!number.valid && number.touched" class="text-danger">
+                Invalid limit exceeded
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="cat" class="form-label">Category</label>
+            <select class="form-select form-select-lg" name="cat" id="cat" [(ngModel)]="details.category">
+              <option selected>Laptop</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Smartphone">Smartphone</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="brand" class="form-label">Brand</label>
+            <input type="text" required
+              class="form-control" name="brand" id="brand" aria-describedby="helpId" placeholder=""[(ngModel)]="details.brand">
+          </div>
+          <div class="mb-3">
+            <label for="area" class="form-label">Description</label>
+            <textarea required class="form-control" name="area" id="area" rows="6" [(ngModel)]="details.description"></textarea>
+          </div>
+          <button [disabled]="(!addForm.valid || details.image === '')" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+  </form>
+</div>
+

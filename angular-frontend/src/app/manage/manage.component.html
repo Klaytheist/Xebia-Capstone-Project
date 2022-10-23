@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center">
+<form (ngSubmit)="filter(filtername)">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text"
+      class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="" [(ngModel)]="filtername">
+  </div>
+  <button type="submit" class="btn btn-primary">Filter</button>
+ </form>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Product Name</th>
+      <th scope="col">Brand</th>
+      <th *ngIf="roleAdmin()" scope="col">Merchant</th>
+      <th scope="col">Units Sold</th>
+      <th scope="col">Category</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr *ngFor="let request of productsList">
+      <th scope="row">{{request.name}}</th>
+      <td>{{request.brand}}</td>
+      <td *ngIf="roleAdmin()">{{request.merchantemail}}</td>
+      <td>{{request.unitsold}}</td>
+      <td>{{request.category}}</td>
+      <td>
+        <button class="btn btn-danger" [routerLink]="['/merchant/edit/',request.id]">Edit</button>
+        <button class="btn btn-success" (click)="remove(request.id)">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

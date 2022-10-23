@@ -1,0 +1,59 @@
+<section class="bg-light py-4 my-5">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+            <div class="d-flex justify-content-between">
+              <h2 class="mb-3 text-dark">Products</h2>
+              <div class="row">
+                <div class="col-12 text-end" >
+                  <a href="" class="text-end" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="bi bi-funnel" style="font-size:32px"></i>
+                  </a>
+                </div>
+                <div class="collapse col-12" id="collapseExample">
+                  <div class="card card-body border-0">
+                    <form action="">
+                      <div class="mb-3">
+                        <label for="price" class="form-label">Price less than</label>
+                        <input type="text"
+                          class="form-control" name="" id="price" aria-describedby="helpId" placeholder="1000">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Filter</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4" *ngFor="let product of products | slice: (pagination.page-1) * pagination.pageSize : pagination.page * pagination.pageSize">
+              <div class="card my-3">
+                  <div class="card-thumbnail">
+                      <img [src]="product.image" class="img-fluid img-thumbnail" alt="thumbnail">
+                  </div>
+                  <div class="card-body">
+                      <h3 class="card-title"><a routerLink="" class="text-secondary">{{product.name}}</a></h3>
+                      <div class="card-text">Brand: {{product.brand}} <p>
+                        Price: ₹{{[product.price]}}
+                      </p></div>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <a href="#" class="btn btn-danger"> Read More</a>
+                        </div>
+                        <div>
+                          <ngb-rating [(rate)]="rating.selected" (hover)="rating.hovered=$event" (leave)="rating.hovered=0" [readonly]="rating.readonly" [rate]="rating.rate" [max]="rating.max"></ngb-rating>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <ngb-pagination class="d-flex justify-content-center"
+            [(page)]="pagination.page"
+            [pageSize]="pagination.pageSize"
+            [maxSize]="5"
+            [collectionSize]="products.length"
+            [boundaryLinks]="true"
+            [rotate]="true">
+          </ngb-pagination>
+      </div>
+  </div>
+</section>

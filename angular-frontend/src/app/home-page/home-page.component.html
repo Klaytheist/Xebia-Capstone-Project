@@ -1,0 +1,196 @@
+<!-- Carousel -->
+<div class="d-none d-md-block">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-indicators">
+      <span *ngFor="let i of [0,1,2]">
+        <button type="button" data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" class="active" aria-current="true" [attr.aria-label]="('Slide '+(i+1))"></button>
+      </span>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://hplaptopshowroom.in/img/banner/banner.jpg" class="d-block w-100" alt="..." >
+      </div>
+      <div class="carousel-item">
+        <img src="https://cdn11.bigcommerce.com/s-tr29lmokh7/images/stencil/1280x1280/i/laptop%20category%20banner%20-%208__29631.original.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/R.jfif" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<!-- Products -->
+
+
+<div class="d-lg-none d-flex"><div class="container text-center">
+  <div class="row">
+      <div class="card ms-md-5 mt-2 mb-3 col-lg-4 border-0" style="max-width: 540px; background-color: #c6c6c6">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="../assets/headphone.png" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Accessories</h5>
+              <p class="card-text">40% off on all accessories.</p>
+              <a routerLink="/products/categories/Accessories" class="btn btn-dark">Go To Accessories</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card  ms-md-5 mb-3 col-lg-4 border-0" style="max-width: 540px; background-color: #c6c6c6">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="../assets/2cd43b_18e76980cba648bc8c7da902e4de6b38_mv2_d_1200_1200_s_2.png"  class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Laptops</h5>
+              <p class="card-text">40% off on all laptops</p>
+              <a routerLink="/products/categories/Laptop" class="btn btn-dark">Go To Laptops</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card  ms-md-5 mb-3 col-lg-4 border-0" style="max-width: 540px; background-color: #c6c6c6;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="../assets/R (1).png" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Smartphones</h5>
+              <p class="card-text">40% off on all smartphones</p>
+              <a routerLink="/products/categories/Smartphone" class="btn btn-dark">Go To Smartphones</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div></div>
+
+<div class="d-lg-flex d-none justify-content-center mt-2">
+  <div class="card mx-lg-1 mb-3 border-0 ms-1" style="max-width: 540px; background-color: #c6c6c6">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../assets/headphone.png" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Accessories</h5>
+          <p class="card-text">40% off on all accessories</p>
+          <a routerLink="/products/categories/Accessories" class="btn btn-dark">Go To Accessories</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card  ms-lg-1 mb-3 border-0 ms-2" style="max-width: 540px; background-color: #c6c6c6">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../assets/2cd43b_18e76980cba648bc8c7da902e4de6b38_mv2_d_1200_1200_s_2.png" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Laptops</h5>
+          <p class="card-text">40% off on all laptops</p>
+          <a routerLink="/products/categories/Laptop" class="btn btn-dark">Go To Laptops</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card   ms-lg-1 mb-3 border-0 ms-2" style="max-width: 540px; background-color: #c6c6c6">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../assets/R (1).png" [width]=300 class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Smartphones</h5>
+          <p class="card-text">40% off on all smartphones</p>
+          <a routerLink="/products/categories/Smartphone" class="btn btn-dark">Go To Smartphones</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Table -->
+<div class="border border-2 border-dark">
+  <h3 class="text-center">
+    Best Sellers
+  </h3>
+</div>
+<table class="table table-striped table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr *ngFor="let index of [0,1,2,3,4]">
+      <th scope="row">{{index+1}}</th>
+      <td>{{productsList[index].name}}</td>
+      <td>{{productsList[index].category}}</td>
+      <td><a [routerLink]="['/products/open/',productsList[index].id]" class="btn btn-dark">Details</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Testimonials -->
+
+
+<!-- Feautures -->
+
+<div class="container mt-5">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-3 d-flex justify-content-center">
+        <div class="card border-2 m-2" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Free Shipping</h5>
+      <p class="card-text">On all orders over 599</p>
+
+    </div>
+  </div>
+      </div>
+      <div class="col-md-3 d-flex justify-content-center">
+        <div class="card border-2 m-2" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">30 days return</h5>
+      <p class="card-text">Money-back guarantee</p>
+    </div>
+  </div>
+      </div>
+      <div class="col-md-3 d-flex justify-content-center">
+        <div class="card border-2 m-2" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Secure checkout</h5>
+      <p class="card-text">100% protected by PayPal</p>
+    </div>
+  </div>
+      </div>
+      <div class="col-md-3 d-flex justify-content-center">
+        <div class="card border-2 m-2" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">24/7 support</h5>
+      <p class="card-text">All time customer support</p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+

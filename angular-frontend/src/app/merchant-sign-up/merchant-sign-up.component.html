@@ -1,0 +1,65 @@
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/sign-up">Sign Up</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Merchant Sign Up</li>
+  </ol>
+</nav>
+<div class="d-flex mt-5 justify-content-center">
+  <div>
+    <form #loginForm="ngForm" (ngSubmit)="signUp()" class="bg-white p-5 border border-2" style="width: 500px">
+      <h4 class="text-center">
+        Merchant Sign Up
+      </h4>
+      <div *ngIf="emailToggle" class="text-danger">
+        Email already exists
+      </div>
+      <div class="mb-3">
+        <label for="fname" class="form-label">First Name</label>
+        <input type="text" required
+          class="form-control" name="fname" id="fname" aria-describedby="helpId" placeholder="" [(ngModel)]="credentials.fname" #fname="ngModel">
+          <div *ngIf="!fname.valid && fname.touched" class="text-danger">
+            This field is required
+          </div>
+      </div>
+      <div class="mb-3">
+        <label for="lname" class="form-label">Last Name</label>
+        <input type="text" required
+          class="form-control" name="lname" id="lname" aria-describedby="helpId" placeholder="" [(ngModel)]="credentials.lname" #lname="ngModel">
+          <div *ngIf="!lname.valid && lname.touched" class="text-danger">
+            This field is required
+          </div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input required pattern="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" type="text"
+          class="form-control" name="email" id="email" aria-describedby="helpId" placeholder="" [(ngModel)]="credentials.email" #email="ngModel">
+        <div *ngIf="!email.valid && email.touched" class="text-danger">
+          Invalid email
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="mob" class="form-label">Mobile Number</label>
+        <input required type="text" pattern="(^$)|(^\d{10}$)"
+           class="form-control" name="mob" id="mob" aria-describedby="helpId" placeholder="" [(ngModel)]="credentials.mobile" #number="ngModel">
+          <div *ngIf="!number.valid && number.touched" class="text-danger">
+            Invalid number
+          </div>
+      </div>
+      <div>
+        <label for="pass" class="form-label">Password</label>
+        <input required pattern='^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&? "]).*$'
+        type="password" class="form-control" name="pass" id="pass" placeholder="" [(ngModel)]="credentials.password" #password="ngModel">
+      </div>
+      <i>
+        {{credentials.password}}
+      </i>
+      <div *ngIf="!password.valid && password.touched" class="text-danger">
+        Invalid password
+      </div>
+    <div class="text-center mt-5">
+      <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+  </div>
+</div>

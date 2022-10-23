@@ -1,0 +1,233 @@
+<!-- Navbar -->
+<div class="superNav border-bottom py-2 bg-light">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 centerOnMobile">
+        <span class="d-none ms-2 d-lg-inline-block d-md-inline-block d-sm-inline-block d-xs-none me-3"><strong>support@capstone.com</strong></span>
+        <span class="me-3"><i class="fa-solid fa-phone me-1 text-warning"></i> <strong>1-800-123-1234</strong></span>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-none d-lg-block d-md-block-d-sm-block d-xs-none text-end">
+        <span class="me-3"><i class="fa-solid fa-truck text-muted me-1"></i><a class="text-muted">Angular</a></span>
+        <span class="me-3"><i class="fa-solid fa-file  text-muted me-2"></i><a class="text-muted">.NET Core</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-expand-lg bg-white sticky-top navbar-light p-3 shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/home']"><i class="fa-solid fa-shop me-2"></i> <strong>CAPSTONE PROJECT</strong></a>
+
+    <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto ">
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-uppercase" [routerLink]="['/home']">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            PRODUCTS
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/products/categories/Laptop">Laptops</a></li>
+            <li><a class="dropdown-item" href="/products/categories/Smartphone">Smartphones</a></li>
+            <li><a class="dropdown-item" href="/products/categories/Accessories">Accessories</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-uppercase" routerLink="/about-us">About Us</a>
+        </li>
+      </ul>
+      <div class="ms-auto d-none d-lg-block">
+        <div class="input-group">
+          <span class="border-dark input-group-text bg-dark text-white"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" class="form-control border-dark" [(ngModel)]="model" [ngbTypeahead]="search" style="color:#7a7a7a">
+          <button class="btn btn-dark text-white" (click)="find(model)">Search</button>
+        </div>
+      </div>
+      <ul class="navbar-nav ms-auto ">
+        <li class="d-none d-lg-block nav-item">
+          <a class="nav-link mx-2 position-relative" routerLink="/products/cart">
+            <i class="bi bi-cart4" style="font-size: 32px;"></i>
+            <span style="top:25%; left: 90%;" class="position-absolute translate-middle badge rounded-pill bg-danger">
+              {{count}}
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </a>
+        </li>
+        <li class="nav-item d-lg-none d-block">
+          <a class="nav-link mx-2 text-uppercase" routerLink="/products/cart">CART</a>
+        </li>
+        <li class="d-none d-lg-block nav-item">
+          <a class="nav-link mx-2 position-relative"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+            <i class="bi bi-person-circle" style="font-size: 32px;"></i>
+          </a>
+        </li>
+        <li class="nav-item d-lg-none d-block">
+          <a class="nav-link mx-2 text-uppercase" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Account</a>
+        </li>
+      </ul>
+    </div>
+    <div class="mx-auto my-3 d-lg-none d-sm-block d-xs-block">
+      <div class="input-group">
+        <span class="border-dark input-group-text bg-dark text-white"></span>
+        <input type="text" class="form-control border-dark" [(ngModel)]="model" [ngbTypeahead]="search" style="color:#7a7a7a">
+        <button class="btn btn-dark text-white" (click)="find(model)">Search</button>
+      </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<!-- Footer -->
+<div class="container-fluid">
+  <br/>
+</div>
+<div class="container-fluid" style=" background-color:#ebeced; height:100% ">
+  <footer class="py-3 my-4 text-center">
+    Created by Jagan Vadekatt
+    <br/>
+    <p class="text-center text-muted">© 2022 Company, Inc</p>
+  </footer>
+</div>
+
+<!-- OffCanvas -->
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header bg-light">
+    <h5 *ngIf="guest" class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Guest Account</h5>
+    <h5 *ngIf="user" class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Account</h5>
+    <h5 *ngIf="merchant" class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Merchant Account</h5>
+    <h5 *ngIf="admin" class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Admin Account</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <!-- Guest -->
+    <div *ngIf="guest" class="d-flex flex-column flex-shrink-0 p-3" style="width:inherit ;height:100%">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a routerLink="/login" class="nav-link active" aria-current="page">
+            Login
+          </a>
+      </ul>
+      <hr>
+    </div>
+
+
+    <!-- User -->
+    <div *ngIf="user" class="d-flex flex-column flex-shrink-0 p-3" style="width:inherit ;height:100%">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li>
+          <a routerLink="/orders" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+            Orders
+          </a>
+        </li>
+        <li>
+          <a href="/change-password" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+            Change password
+          </a>
+        </li>
+      </ul>
+      <hr>
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong>{{name}}</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow">
+          <li><a class="dropdown-item" (click)="logout()">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- Merchant -->
+    <div *ngIf="merchant" class="d-flex flex-column flex-shrink-0 p-3" style="width:inherit ;height:100%">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li>
+          <a routerLink="/change-password" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+            Change Password
+          </a>
+        </li>
+        <li>
+          <a routerLink="/orders" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+            Orders
+          </a>
+        </li>
+        <li>
+          <a href="/manage" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+            Manage Products
+          </a>
+        </li>
+        <li>
+          <a routerLink="merchant/add-products" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+            Products
+          </a>
+        </li>
+      </ul>
+      <hr>
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong>{{name}}</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow">
+          <li><a class="dropdown-item" (click)="logout()">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Admin -->
+    <div *ngIf="admin" class="d-flex flex-column flex-shrink-0 p-3" style="width:inherit ;height:100%">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a routerLink = '/change-password' class="nav-link link-dark" aria-current="page">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+            Change Password
+          </a>
+        </li>
+        <li>
+          <a routerLink="/manage" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+            Manage Products
+          </a>
+        </li>
+        <li>
+          <a routerLink="/orders" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+            Orders
+          </a>
+        </li>
+        <li>
+          <a href="/admin/remove-users" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+            Remove Users
+          </a>
+        </li>
+        <li>
+          <a href="/admin/merchant-approval" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+            Merchant Approval
+          </a>
+        </li>
+      </ul>
+      <hr>
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong>{{name}}</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow">
+          <li><a class="dropdown-item" (click)="logout()">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

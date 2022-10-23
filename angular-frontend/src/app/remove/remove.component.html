@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center">
+ <form (ngSubmit)="filter(filtername)">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text"
+      class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="" [(ngModel)]="filtername">
+  </div>
+  <button type="submit" class="btn btn-primary">Filter</button>
+ </form>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Role</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr *ngFor="let user of usersList">
+      <th scope="row">{{user.fname +' '+ user.lname}}</th>
+      <td>{{user.email}}</td>
+      <td>{{user.mobile}}</td>
+      <td>{{user.role}}</td>
+      <td><button class="btn btn-danger" (click)="remove(user.email)">Remove</button></td>
+    </tr>
+  </tbody>
+</table>
