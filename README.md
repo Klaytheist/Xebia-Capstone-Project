@@ -5,7 +5,7 @@
 
 # Database setup  
 * Copy contents of [MS Server Script](https://github.com/Klaytheist/Xebia-Capstone-Project/blob/master/MS%20Server%20Script.txt) into a new query window of SQL Server and execute it.  
-* Insert an admin account of your choice manually to the users table.
+* Insert a user account into users table with role 0(Admin).
   
     
 # Frontend setup  
