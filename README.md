@@ -1,5 +1,5 @@
 # Pre-requisites  
-* Angular v14 or above  
+* Angular v14.1.3 or above  
 * .NET 6 Core  
 * MS SQL Server Management Studio 18.
 
